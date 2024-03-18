@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="LicenseManager/MainWindow.axaml" value="LicenseManager/LicenseManager.csproj" />
+        <entry key="LicenseManager/NotificationWindow.axaml" value="LicenseManager/LicenseManager.csproj" />
+        <entry key="LicenseManagerMVVM/App.axaml" value="LicenseManagerMVVM/LicenseManagerMVVM.csproj" />
+        <entry key="LicenseManagerMVVM/Icons.axaml" value="LicenseManagerMVVM/LicenseManagerMVVM.csproj" />
+        <entry key="LicenseManagerMVVM/Styles/Styles.axaml" value="LicenseManagerMVVM/LicenseManagerMVVM.csproj" />
+        <entry key="LicenseManagerMVVM/Views/MainWindow.axaml" value="LicenseManagerMVVM/LicenseManagerMVVM.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

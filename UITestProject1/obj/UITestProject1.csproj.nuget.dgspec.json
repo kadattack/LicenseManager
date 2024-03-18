@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/newdev/RiderProjects/LicenseManager/UITestProject1/UITestProject1.csproj": {}
+  },
+  "projects": {
+    "/home/newdev/RiderProjects/LicenseManager/UITestProject1/UITestProject1.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/newdev/RiderProjects/LicenseManager/UITestProject1/UITestProject1.csproj",
+        "projectName": "UITestProject1",
+        "projectPath": "/home/newdev/RiderProjects/LicenseManager/UITestProject1/UITestProject1.csproj",
+        "packagesPath": "/home/newdev/.nuget/packages/",
+        "outputPath": "/home/newdev/RiderProjects/LicenseManager/UITestProject1/obj/",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "/home/newdev/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "dependencies": {
+            "NUnit": {
+              "target": "Package",
+              "version": "[2.6.4, )"
+            },
+            "Xamarin.UITest": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            }
+          }
+        }
+      }
+    }
+  }
+}

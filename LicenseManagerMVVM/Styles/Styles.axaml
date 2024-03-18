@@ -1,0 +1,15 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="Button:pointerover">
+        <Setter Property="Background" Value="Red" />
+    </Style>
+    <Style Selector="Button:pressed">
+        <Setter Property="Background" Value="Purple" />
+    </Style>
+</Styles>

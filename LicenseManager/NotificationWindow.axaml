@@ -1,0 +1,8 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:licenseManager="clr-namespace:LicenseManager"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        x:Class="LicenseManager.NotificationWindow"
+        x:DataType="system:String">
+    <TextBlock Text="{Binding }" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+</Window>

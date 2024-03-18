@@ -1,0 +1,276 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:LicenseManagerMVVM.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:global="clr-namespace:"
+        mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="350"
+        x:Class="LicenseManagerMVVM.Views.MainWindow"
+        x:DataType="global:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="LicenseManagerMVVM"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True">
+
+
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="DarkSlateGray" />
+        </Style>
+        <Style Selector="Button:pressed">
+            <Setter Property="Background" Value="DarkSlateGray" />
+        </Style>
+
+        <Style Selector="Label">
+            <Setter Property="Foreground" Value="LightGray" />
+        </Style>
+    </Window.Styles>
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <global:MainWindowViewModel />
+    </Design.DataContext>
+    <DockPanel>
+        <Panel>
+            <Panel.Styles>
+                <Style Selector="TextBlock">
+                    <Setter Property="Foreground" Value="LightGray" />
+                </Style>
+            </Panel.Styles>
+            <ExperimentalAcrylicBorder IsHitTestVisible="True">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial
+                        BackgroundSource="Digger"
+                        TintColor="Black"
+                        TintOpacity="1"
+                        MaterialOpacity="0.80" />
+                </ExperimentalAcrylicBorder.Material>
+            </ExperimentalAcrylicBorder>
+
+            <DockPanel Dock="Top" VerticalAlignment="Top" Margin="10,0">
+                <TextBlock Foreground="LightGray" Text="Tehnolink License Manager" VerticalAlignment="Center"
+                           Margin="20" DockPanel.Dock="Top">
+                </TextBlock>
+                <Border DockPanel.Dock="Top"
+                        BorderBrush="LightGray"
+                        BorderThickness="0,0,0,1">
+                </Border>
+
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Spacing="0" Margin="0,10,0,0"
+                            Background="Transparent">
+                    <ItemsControl ItemsSource="{Binding Clients}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Transparent">
+                                    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <Svg DockPanel.Dock="Left" Path="/Assets/card-checklist.svg" Width="24"
+                                             Height="24" />
+                                        <TextBlock Text="{Binding client_name}" DockPanel.Dock="Left" Padding="0,10"
+                                                   Margin="10,0,0,0"
+                                                   VerticalAlignment="Center" FontWeight="Light">
+                                        </TextBlock>
+                                    </DockPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+            </DockPanel>
+            <DockPanel Dock="Bottom">
+                <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Bottom"
+                        DockPanel.Dock="Bottom">
+                    Add new Client
+                </Button>
+            </DockPanel>
+        </Panel>
+
+        <Panel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <ExperimentalAcrylicBorder IsHitTestVisible="True">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial
+                        BackgroundSource="Digger"
+                        TintColor="Black"
+                        TintOpacity="1"
+                        MaterialOpacity="1" />
+                </ExperimentalAcrylicBorder.Material>
+            </ExperimentalAcrylicBorder>
+            <DockPanel>
+
+                <TabControl DockPanel.Dock="Top" Margin="5">
+                    <TabItem Header="License">
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Top" Margin="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" /> <!-- Adjust the width as needed -->
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <StackPanel Spacing="10" Grid.Row="0" Grid.Column="0" Orientation="Vertical">
+                                    <Label Content="Keys"></Label>
+                                    <Separator></Separator>
+
+                                    <DataGrid Height="300"
+                                              ItemsSource="{Binding Licenses}"
+                                              IsReadOnly="True"
+                                              CanUserReorderColumns="True"
+                                              CanUserResizeColumns="True"
+                                              CanUserSortColumns="False"
+                                              Foreground="Black"
+                                              GridLinesVisibility="Horizontal"
+                                              BorderThickness="1"
+                                              BorderBrush="LightGray"
+                                              Background="DimGray"
+                                              Padding="10"
+                                              SelectionChanged="DataGrid_SelectionChanged">
+                                        <DataGrid.Styles>
+                                            <Style Selector="DataGridColumnHeader">
+                                                <Setter Property="Background" Value="Gray" />
+                                                <Setter Property="FontSize" Value="13" />
+                                            </Style>
+                                            <Style Selector="DataGridRow">
+
+                                            </Style>
+                                        </DataGrid.Styles>
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Product"
+                                                                Binding="{Binding product.product_name}" />
+                                            <DataGridTextColumn Header="Active"
+                                                                Binding="{Binding active}" />
+                                            <DataGridTextColumn Header="Activation Updated"
+                                                                Binding="{Binding activation_refreshed}" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <StackPanel Spacing="10" Margin="0,10" Orientation="Horizontal"
+                                                HorizontalAlignment="Right">
+                                    <Button Width="80" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Click="Deactivate_Button_OnClick">Deactivate</Button>
+                                    <Button Width="80" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Click="Activate_Button_OnClick">Activate</Button>
+                                        </StackPanel>
+
+                                
+
+                                    <Grid ShowGridLines="True" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" /> <!-- Adjust the width as needed -->
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <Label Margin="5" Grid.Row="0" Grid.Column="0" Content="Active:" VerticalAlignment="Center"></Label>
+                                        <TextBlock Margin="5" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{ Binding SelectedLicense.active, Mode=OneWay }">
+                                        </TextBlock>
+                                        
+                                        <Label Margin="5" Grid.Row="1" Grid.Column="0" Content="First Activated:" VerticalAlignment="Center"></Label>
+                                        <TextBlock Margin="5" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{ Binding SelectedLicense.first_activation, Mode=OneWay }">
+                                        </TextBlock>
+                                        
+                                        <Label  Margin="5" Grid.Row="2" Grid.Column="0" Content="Last Updated:" VerticalAlignment="Center"></Label>
+                                        <TextBlock Margin="5" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{ Binding SelectedLicense.activation_refreshed, Mode=OneWay }">
+                                        </TextBlock>
+                                        
+                                        <Label Margin="5" Grid.Row="3" Grid.Column="0" Content="Hardware Locked:" VerticalAlignment="Center"></Label>
+                                        <TextBlock Margin="5" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{ Binding SelectedLicense.hardware_lock, Mode=OneWay }">
+                                        </TextBlock>
+                                        
+                                        <Label Margin="5" Grid.Row="4" Grid.Column="0" Content="Hardware Id:" VerticalAlignment="Center"></Label>
+                                        <TextBlock Margin="5" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{ Binding SelectedLicense.hardware_id, Mode=OneWay }">
+                                        </TextBlock>
+                                        
+                                         <Label Margin="5" Grid.Row="5" Grid.Column="0" Content="License Id:" VerticalAlignment="Center"></Label>
+                                        <TextBlock Margin="5" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{ Binding SelectedLicense.license_id, Mode=OneWay }">
+                                        </TextBlock>
+                                        
+                                         <Label Margin="5" Grid.Row="6" Grid.Column="0" Content="License:" VerticalAlignment="Center"></Label>
+                                        <TextBlock Margin="5" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{ Binding SelectedLicense.license, Mode=OneWay }">
+                                        </TextBlock>
+                                        <Label Margin="5" Grid.Row="7" Grid.Column="0" Content="Product Name:" VerticalAlignment="Center"></Label>
+                                        <TextBlock Margin="5" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{ Binding SelectedLicense.product.product_name, Mode=OneWay }">
+                                        </TextBlock>
+                                        <Label Margin="5" Grid.Row="8" Grid.Column="0" Content="Product Id:" VerticalAlignment="Center"></Label>
+                                        <TextBlock Margin="5" Grid.Row="8" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{ Binding SelectedLicense.product.product_id, Mode=OneWay }">
+                                        </TextBlock>
+                                        
+                                        <Label Margin="5" Grid.Row="9" Grid.Column="0" Content="Last payment:" VerticalAlignment="Center"></Label>
+                                        <TextBlock Margin="5" Grid.Row="9" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Text="{ Binding SelectedLicense.payments, Converter={StaticResource NewestDateConverter}, Mode=OneWay }">
+                                        </TextBlock>
+                                        
+                                        </Grid>
+                                            
+                                </StackPanel>
+
+
+                                <StackPanel Grid.Row="0" Spacing="10" Grid.Column="1" Orientation="Vertical"
+                                            VerticalAlignment="Stretch" Margin="20,0,0,0">
+                                    <Label Content="License"></Label>
+                                    <Separator></Separator>
+                                    <Label Content="Payments"></Label>
+                                    <Border Height="100">
+                                        <ScrollViewer>
+                                            <StackPanel>
+                                                <TextBlock Text="Payments Date" FontWeight="Bold" Margin="0,0,0,5" />
+                                                <ListBox ItemsSource="{Binding Payments}">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding payment_date}" />
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                </ListBox>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </Border>
+                                    <Label Content="License Request"></Label>
+                                    <TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="100"></TextBox>
+                                    <Label Content="Public Key Url Hash"></Label>
+                                    <TextBox Text="" />
+                                    <Label Content="Device Id"></Label>
+                                    <TextBox Text="" />
+                                    <Button HorizontalAlignment="Right" HorizontalContentAlignment="Center" Width="80">Sign</Button>
+
+                                </StackPanel>
+
+                            </Grid>
+                        </DockPanel>
+                    </TabItem>
+                    <TabItem Header="New License">
+                        <TextBlock Margin="5">This is tab 2 content</TextBlock>
+                    </TabItem>
+
+                </TabControl>
+
+
+            </DockPanel>
+        </Panel>
+    </DockPanel>
+
+
+</Window>

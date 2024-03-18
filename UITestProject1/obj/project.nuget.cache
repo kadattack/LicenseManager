@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "FxgiQGR6+x1BTab+Kt65xjFh/Ed/8IO9SvbQUkACYV5eAIzoW96M3aMWszGVtBUe6YaA6lfim6zRQ8gxV04uLg==",
+  "success": true,
+  "projectFilePath": "/home/newdev/RiderProjects/LicenseManager/UITestProject1/UITestProject1.csproj",
+  "expectedPackageFiles": [
+    "/home/newdev/.nuget/packages/nunit/2.6.4/nunit.2.6.4.nupkg.sha512",
+    "/home/newdev/.nuget/packages/xamarin.uitest/2.2.4/xamarin.uitest.2.2.4.nupkg.sha512"
+  ],
+  "logs": []
+}
